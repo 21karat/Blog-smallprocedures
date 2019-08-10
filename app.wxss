@@ -1,0 +1,5 @@
+/**app.wxss**/
+@import "dist/index.wxss";
+.wxParse-p {
+  margin-top: 20rpx;
+}
