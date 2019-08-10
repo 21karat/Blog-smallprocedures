@@ -13,8 +13,8 @@ Page(extend({}, Tab, {
         id: 'java',
         title: 'Java'
       }, {
-        id: 'net',
-        title: '.Net'
+        id: 'web',
+        title: 'web'
       }, {
         id: 'python',
         title: 'Python'

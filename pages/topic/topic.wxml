@@ -11,7 +11,7 @@
       <view class="zan-panel zan-panel--without-top-border" >
         <view class="zan-card">
           <view class="zan-card__thumb">
-            <image class="zan-card__img" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3434703375,1741361675&fm=26&gp=0.jpg" data-index="{{idx}}" binderror="errorloadImage" mode="aspectFit"></image>
+            <image class="zan-card__img" src="../../images/pic/1.jpg" data-index="{{idx}}" binderror="errorloadImage" mode="aspectFit"></image>
           </view>
           <view class="zan-card__detail" id="1" bindtap="bindItemTap">
             <view class="zan-card__detail-row " style='height:60px'>
@@ -41,7 +41,7 @@
 <view class="zan-panel zan-panel--without-top-border" >
         <view class="zan-card">
           <view class="zan-card__thumb">
-            <image class="zan-card__img" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1756791409,1268580128&fm=26&gp=0.jpg" data-index="{{idx}}" binderror="errorloadImage" mode="aspectFit"></image>
+            <image class="zan-card__img" src="../../images/pic/1.jpg" data-index="{{idx}}" binderror="errorloadImage" mode="aspectFit"></image>
           </view>
           <view class="zan-card__detail" id="1" bindtap="bindItemTap">
             <view class="zan-card__detail-row " style='height:60px'>

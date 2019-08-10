@@ -2,94 +2,45 @@
 <import src="/dist/loadmore/index.wxml" />
 
 <scroll-view scroll-y="true" class="container" bindscrolltolower="lower" enable-back-to-top="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-  <block>
+  <block wx:for="{{posts}}">
     <view class="feed-item" id="1" bindtap="bindItemTap">
       <view class="zan-font-16">
-        <text>小程序后台管理系统的实现</text>
+        <text>{{item.title}}</text>
       </view>
       <view style='margin-top:10px;text-align: center'>
-        <image mode="widthFix" style="width: 100%;" data-index="{{idx}}" binderror="errorloadImage" src="D:\wx\bok\images\pic\1.jpg"></image>
+        <image mode="widthFix" style="width: 100%;" data-index="{{idx}}" binderror="errorloadImage" src="{{item.url}}"></image>
       </view>
       <view class="zan-font-12 zan-ellipsis--l3">
-        <text>我的第一个博客怎么样？</text>
+        <text>{{item.content}}</text>
       </view>
       <view class="tag-body">
         <view class="tag-actions">
           <view class="icon-author">
             <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
-            <view class="zan-pull-left zan-font-12 ">
-              玄冰
-            </view>
+            <view class="zan-pull-left zan-font-12 ">{{item.author}}</view>
           </view>
           <view class="icon-created">
             <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
             <view class="zan-pull-left zan-font-12">
-              <text>77</text>
+              <text>{{item.fabulous}}</text>
             </view>
           </view>
           <view class="icon-review">
             <view class="zan-icon zan-icon-browsing-history zan-pull-left zan-font-12 "></view>
             <view class="zan-pull-left zan-font-12">
-              <text>44</text>
+              <text>{{item.love}}</text>
             </view>
           </view>
           <view class="icon-comment">
             <view class="zan-icon zan-icon-records zan-pull-left zan-font-12 "></view>
             <view class="zan-pull-left zan-font-12">
-              <text>33</text>
+              <text>{{item.read}}</text>
             </view>
           </view>
           <view class="icon-like">
             <view class="zan-icon zan-icon-like zan-pull-left zan-font-12 "></view>
             <view class="zan-pull-left zan-font-12">
-              <text>22</text>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-
-
-    <view class="feed-item" id="1" bindtap="bindItemTap">
-      <view class="zan-font-16">
-        <text>小程序后台管理系统的实现，你知道吗，其实小程序前端开发和H5差不多，你觉得的呢？</text>
-      </view>
-      <view style='margin-top:10px;text-align: center'>
-        <image mode="widthFix" style="width: 100%;" data-index="{{idx}}" binderror="errorloadImage" src="D:\wx\bok\images\pic\1.jpg"></image>
-      </view>
-      <view class="zan-font-12 zan-ellipsis--l3">
-        <text>我的第一个博客怎么样？想不想像我一样拥有一个属于自己的微信小程序呢，心动不如行动，赶快去官方文档中学习一下怎么使用微信开发工具开发出属于自己的一款小程序吧</text>
-      </view>
-      <view class="tag-body">
-        <view class="tag-actions">
-          <view class="icon-author">
-            <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
-            <view class="zan-pull-left zan-font-12 ">
-              玄冰
-            </view>
-          </view>
-          <view class="icon-created">
-            <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
-            <view class="zan-pull-left zan-font-12">
-              <text>77</text>
-            </view>
-          </view>
-          <view class="icon-review">
-            <view class="zan-icon zan-icon-browsing-history zan-pull-left zan-font-12 "></view>
-            <view class="zan-pull-left zan-font-12">
-              <text>44</text>
-            </view>
-          </view>
-          <view class="icon-comment">
-            <view class="zan-icon zan-icon-records zan-pull-left zan-font-12 "></view>
-            <view class="zan-pull-left zan-font-12">
-              <text>33</text>
-            </view>
-          </view>
-          <view class="icon-like">
-            <view class="zan-icon zan-icon-like zan-pull-left zan-font-12 "></view>
-            <view class="zan-pull-left zan-font-12">
-              <text>22</text>
+              <text>{{item.watch}}</text>
             </view>
           </view>
         </view>

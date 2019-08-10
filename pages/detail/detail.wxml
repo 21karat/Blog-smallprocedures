@@ -8,7 +8,7 @@
       <text>文章内部标题</text>
     </view>
     <view class='tag-title'>
-      <image mode="widthFix" binderror="errorloadImage" src="D:\wx\bok\images\pic\1.jpg"></image>
+      <image mode="widthFix" binderror="errorloadImage" src="../../images/pic/1.jpg"></image>
     </view>
     <view class="tag-body">
       <view class="tag-actions">
@@ -59,7 +59,7 @@
       <view class="zan-panel zan-panel--without-top-border">
         <view  data-name="小明" bindtap="focusComment">
           <view class='comment-content'>
-            <image src="D:\wx\bok\images\pic\1.jpg"></image>
+            <image src="../../images/pic/1.jpg"></image>
             <text class='zan-c-gray-darker zan-font-12' style='flex-basis:490rpx;margin-left:20rpx'>{{item.cNickName}}</text>
             <text class='zan-c-gray-darker zan-font-12'>2019-8-7</text>
           </view>
@@ -68,7 +68,7 @@
         <block >
           <view style='padding-left:50rpx'>
             <view class='comment-content' bindtap="focusComment" data-name="小孩" data-openid="{{item._openid}}">
-              <image src="D:\wx\bok\images\pic\1.jpg"></image>
+              <image src="../../images/pic/1.jpg"></image>
               <text class='zan-c-gray-darker zan-font-12 ' style='margin-left:20rpx'>小孩回复小明</text>
             </view>
             <view class='zan-c-gray-darker zan-font-12 comment-detail'>回复内容</view>

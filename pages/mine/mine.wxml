@@ -1,7 +1,7 @@
 <import src="../../templates/login.wxml" />
 <view class="container more">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="D:\wx\bok\images\pic\1.jpg" background-size="cover"></image>
+    <image class="userinfo-avatar" src="../../images/pic/1.jpg" background-size="cover"></image>
     <text class="userinfo-nickname">用户信息</text>
   </view>
 </view>
