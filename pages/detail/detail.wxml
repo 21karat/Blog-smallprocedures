@@ -1,3 +1,4 @@
+<import src="../../wxParse/wxParse.wxml" />
 
 <template is="zan-dialog" data="{{ zanDialog }}"></template>
 <template is="zan-toast" data="{{ zanToast }}"></template>
@@ -5,41 +6,41 @@
 <view catchtap="hiddenMenubox">
   <view class="feed-item" id="{{post.id}}">
     <view class="zan-font-16">
-      <text>文章内部标题</text>
+      <text> {{post.title}}</text>
     </view>
     <view class='tag-title'>
-      <image mode="widthFix" binderror="errorloadImage" src="../../images/pic/1.jpg"></image>
+      <image mode="widthFix" binderror="errorloadImage" src="{{post.url}}"></image>
     </view>
     <view class="tag-body">
       <view class="tag-actions">
         <view class="icon-author">
           <view class="zan-icon zan-icon-contact zan-pull-left zan-font-12 "> </view>
           <view class="zan-pull-left zan-font-12 ">
-            玄冰
+            {{post.author}}
           </view>
         </view>
         <view class="icon-created">
           <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
           <view class="zan-pull-left zan-font-12">
-            <text>22</text>
+            <text>{{post.fabulous}}</text>
           </view>
         </view>
         <view class="icon-review">
           <view class="zan-icon zan-icon-browsing-history zan-pull-left zan-font-12 "></view>
           <view class="zan-pull-left zan-font-12">
-            <text>55</text>
+            <text>{{post.love}}</text>
           </view>
         </view>
         <view class="icon-comment">
           <view class="zan-icon zan-icon-records zan-pull-left zan-font-12 "></view>
           <view class="zan-pull-left zan-font-12">
-            <text>33</text>
+            <text>{{post.read}}</text>
           </view>
         </view>
         <view class="icon-like">
           <view class="zan-icon zan-icon-like zan-pull-left zan-font-12 "></view>
           <view class="zan-pull-left zan-font-12">
-            <text>44</text>
+            <text>{{post.watch}}</text>
           </view>
         </view>
       </view>
@@ -59,7 +60,7 @@
       <view class="zan-panel zan-panel--without-top-border">
         <view  data-name="小明" bindtap="focusComment">
           <view class='comment-content'>
-            <image src="../../images/pic/1.jpg"></image>
+            <image src="../../images/pic/77.jpg"></image>
             <text class='zan-c-gray-darker zan-font-12' style='flex-basis:490rpx;margin-left:20rpx'>{{item.cNickName}}</text>
             <text class='zan-c-gray-darker zan-font-12'>2019-8-7</text>
           </view>
@@ -68,7 +69,7 @@
         <block >
           <view style='padding-left:50rpx'>
             <view class='comment-content' bindtap="focusComment" data-name="小孩" data-openid="{{item._openid}}">
-              <image src="../../images/pic/1.jpg"></image>
+              <image src="../../images/pic/77.jpg"></image>
               <text class='zan-c-gray-darker zan-font-12 ' style='margin-left:20rpx'>小孩回复小明</text>
             </view>
             <view class='zan-c-gray-darker zan-font-12 comment-detail'>回复内容</view>

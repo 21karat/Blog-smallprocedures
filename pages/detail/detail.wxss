@@ -1,6 +1,5 @@
 /* pages/detail/detail.wxss */
-@import "/wxParse/wxParse.wxss";
-@import "../../templates/poster.wxss";
+@import "../../wxParse/wxParse.wxss";
 
 /*文章明细*/
 .feed-item {

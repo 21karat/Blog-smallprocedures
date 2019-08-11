@@ -21,11 +21,25 @@ Page({
     var that = this
     this.getData();
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  /**
+   * 下拉
+   */
+  lower: function () {
+    let that = this;
+    if (!that.data.lowerComplete) {
+      return;
+    }
+    if (!that.data.nomore && !that.data.nodata) {
+      that.setData({
+        loading: true,
+        lowerComplete: false
+      });
+      //请求数据
+      that.getData();
+      that.setData({
+        lowerComplete: true
+      });
+    }
   },
   /**
   * 点击文章明细
@@ -36,19 +50,35 @@ Page({
       url: '../detail/detail?blogId=' + blogId
     })
   },
+  /**
+   * 获取列表信息
+   */
   getData: function() {
     var that = this;
+    let page = that.data.page;
     wx.request({
       url: 'http://localhost:8080/getBlogList',
       data: {
-
+        "limit": 10,
+        "page": page + 1,
       },
       method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/json'
+      },
       success: function (res) {
         // success
         console.log(res);
+        if (res.data.blogs == null) {
+          that.setData({
+            nomore: true
+          });
+        }
         that.setData({
-          posts: res.data.blogs
+          posts: res.data.blogs,
+          page: res.data.page,
+          loading: false
         });
       },
       fail: function () {
