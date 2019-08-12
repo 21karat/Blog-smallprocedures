@@ -1,7 +1,5 @@
 
 const { Tab, extend } = require('../../dist/index');
-const util = require('../../utils/util.js');
-const api = require('../../utils/api.js');
 
 Page(extend({}, Tab, {
   data: {
@@ -35,8 +33,7 @@ Page(extend({}, Tab, {
     nodata: false,
     nomore: false,
     scrollTop: 0,
-    lowerComplete: true,
-    defaultImageUrl: getApp().globalData.defaultImageUrl + getApp().globalData.imageStyle200To200
+    lowerComplete: true
   },
   handleZanTabChange(e) {
     var componentId = e.componentId;
@@ -48,6 +45,9 @@ Page(extend({}, Tab, {
       scrollTop: 0,
       [`${componentId}.selectedId`]: selectedId
     });
+    this.getData(0);
+  },
+  onLoad: function () {
     this.getData(0);
   },
   lower: function () {
@@ -67,25 +67,14 @@ Page(extend({}, Tab, {
     }
     console.log("lower")
   },
-  //事件处理函数
+  //详情
   bindItemTap: function (e) {
     let blogId = e.currentTarget.id;
     wx.navigateTo({
       url: '../detail/detail?blogId=' + blogId
     })
   },
-  //图片加载失败给到默认图片
-  errorloadImage: function (e) {
-    if (e.type == "error") {
-      var index = e.target.dataset.index
-      var posts = this.data.posts
-      posts[index].slug = this.data.defaultImageUrl
-      this.setData({
-        posts: posts
-      })
-    }
-  },
-
+  
   getData: function (index) {
     let that = this;
     let page = that.data.page;
@@ -93,29 +82,54 @@ Page(extend({}, Tab, {
     let filter = '';
     switch (selectId) {
       case 'hot':
-        filter = "featured:true";
+        filter = "hot";
         break;
       case 'java':
-        filter = "tags:['java']";
+        filter = "java";
         break;
-      case 'net':
-        filter = "tags:['c']";
-        break;
-      case 'python':
-        filter = "tags:['python']";
+      case 'web':
+        filter = "web";
         break;
       case 'python':
-        filter = "tags:['python']";
+        filter = "python";
         break;
       case 'other':
-        filter = "page:false";
+        filter = "other";
         break;
       default:
-        filter = 'page:false';
+        filter = 'hot';
     }
 
-    api.getBlogByTag({
-      
-    });
+    wx.request({
+      url: 'http://localhost:8080/getBlogListByTab',
+      data: {
+        "limit": 10,
+        "page": page + 1,
+        "filter": filter
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // success
+        console.log(res);
+        that.setData({
+          posts: res.data.blogs,
+          page: res.data.page,
+          loading: false,
+          nomore: false,
+          nodata: true
+        });
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  
   }
 }));

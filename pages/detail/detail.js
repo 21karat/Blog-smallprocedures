@@ -1,13 +1,14 @@
 //index.js
 //获取应用实例
+const Zan = require('../../dist/index');
 const WxParse = require('../../wxParse/wxParse.js');
 
 const app = getApp()
 
 Page({
   /**
-  * 页面的初始数据
-  */
+   * 页面的初始数据
+   */
   data: {
     post: {},
     author: "",
@@ -16,7 +17,7 @@ Page({
     collected: false,
     liked: false,
     isShow: false,
-    comments: [],
+    comments: {},
     commentsPage: 1,
     commentContent: "",
     isLastCommentPage: false,
@@ -69,70 +70,88 @@ Page({
     that.setData({
       loading: true
     })
-    
+    wx.request({
+      url: 'http://localhost:8080/getCommentByBlog',
+      data: {
+        "blogId": that.data.post.id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // success
+        console.log(res);
+        that.setData({
+          comments: res.data
+        });
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
   },
   /**
    * 发送按钮提交
    */
   formSubmit: function (e) {
-
     wx.showLoading({
       title: '评论提交中',
     })
-
     var that = this
-    var comment = e.detail.value.inputComment;
+    
+    var content = e.detail.value.inputComment
+    var blogId = that.data.post.id
 
-    //优先保存formId
-    console.info(e.detail.formId)
-    if (e.detail != undefined && e.detail.formId != undefined) {
-      var data = {
-        formId: e.detail.formId,
-        author: 0,
-        timestamp: new Date().getTime()
+    wx.request({
+      url: 'http://localhost:8080/addComment',
+      data: {
+        "blogId": blogId,
+        "userId": 1,
+        "content":content
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // success
+        console.log(res);
+        var timeOut = setTimeout(function () {
+          console.log("延迟调用============")
+          wx.hideLoading()
+          wx.showToast({
+            title: "评论已提交",
+            icon: 'loading...',//图标，支持"success"、"loading" 
+            duration: 2000,//提示的延迟时间，单位毫秒，默认：1500 
+            mask: false,//是否显示透明蒙层，防止触摸穿透，默认：false
+          })
+        }, 2000)
+        that.setData({
+          comments: [],
+          commentsPage: 1,
+          isLastCommentPage: false,
+          toName: "",
+          commentId: "",
+          placeholder: "评论...",
+          commentContent: "",
+          loading: true,
+          nodata: false,
+          nomore: false
+        })
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
       }
-      wxApi.insertFormIds(data).then(res => {
-        console.info(res)
-      })
-    }
-
-    if (comment == undefined || comment.length == 0) {
-      wx.hideLoading()
-      return
-    }
-
-    var commentId = that.data.commentId
-    var toName = that.data.toName
-    var toOpenId = that.data.toOpenId
-    if (commentId === "") {
-      var data = {
-        postId: that.data.post.id,
-        cNickName: app.globalData.userInfo.nickName,
-        cAvatarUrl: app.globalData.userInfo.avatarUrl,
-        timestamp: new Date().getTime(),
-        createDate: util.formatTime(new Date()),
-        comment: comment,
-        childComment: [],
-        flag: 0
-      }
-      //调接口
-      
-    } else {
-      var childData = [{
-        cOpenId: app.globalData.openid,
-        cNickName: app.globalData.userInfo.nickName,
-        cAvatarUrl: app.globalData.userInfo.avatarUrl,
-        timestamp: new Date().getTime(), //new Date(),
-        createDate: util.formatTime(new Date()),
-        comment: comment,
-        tNickName: toName,
-        tOpenId: toOpenId,
-        flag: 0
-      }]
-      console.info(commentId)
-      console.info(childData)
-      //调接口
-    }
+    })
   },
   /**
    * 获取文章数据
@@ -168,8 +187,8 @@ Page({
   },
 
   /**
-     * 返回
-     */
+   * 返回
+   */
   navigateBack: function (e) {
     wx.switchTab({
       url: '../index/index'

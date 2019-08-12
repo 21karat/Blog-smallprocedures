@@ -55,26 +55,17 @@
   <!--评论列表-->
   <view class='cut-off-line'></view>
   <view class='comment-list'>
-    <view class="zan-font-16 comment-header">共10条评论</view>
-    <block>
+    <view class="zan-font-16 comment-header">共{{comments.num}}条评论</view>
+    <block wx:for="{{comments.comments}}">
       <view class="zan-panel zan-panel--without-top-border">
-        <view  data-name="小明" bindtap="focusComment">
+        <view  data-name="{{item.username}}">
           <view class='comment-content'>
-            <image src="../../images/pic/77.jpg"></image>
-            <text class='zan-c-gray-darker zan-font-12' style='flex-basis:490rpx;margin-left:20rpx'>{{item.cNickName}}</text>
-            <text class='zan-c-gray-darker zan-font-12'>2019-8-7</text>
+            <image src="{{item.url}}"></image>
+            <text class='zan-c-gray-darker zan-font-12' style='flex-basis:490rpx;margin-left:20rpx'>{{item.username}}</text>
+            <text class='zan-c-gray-darker zan-font-12'>{{item.time}}</text>
           </view>
-          <view class='zan-c-gray-darker zan-font-12 comment-detail'>评论内容，短了是不是不太好啊，但是怎么写呢</view>
+          <view class='zan-c-gray-darker zan-font-12 comment-detail'>{{item.content}}</view>
         </view>
-        <block >
-          <view style='padding-left:50rpx'>
-            <view class='comment-content' bindtap="focusComment" data-name="小孩" data-openid="{{item._openid}}">
-              <image src="../../images/pic/77.jpg"></image>
-              <text class='zan-c-gray-darker zan-font-12 ' style='margin-left:20rpx'>小孩回复小明</text>
-            </view>
-            <view class='zan-c-gray-darker zan-font-12 comment-detail'>回复内容</view>
-          </view>
-        </block>
       </view>
     </block>
     <template is="zan-loadmore" data="{{ loading }}" />
@@ -97,6 +88,8 @@
           <button class="comment-button touch-active" formType="submit">发送</button>
           <view class="zan-icon zan-icon-add-o zan-font-20 icon-add" catchtap='showHideMenu'> </view>
         </view>
+
+
         <!--功能图标-->
         <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
           <view class="iconList">
@@ -142,7 +135,6 @@
                 <view>
                   <text>赞赏</text>
                 </view>
-
               </view>
             </view>
           </view>
