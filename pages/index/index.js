@@ -57,7 +57,7 @@ Page({
     var that = this;
     let page = that.data.page;
     wx.request({
-      url: 'http://localhost:8080/getBlogList',
+      url: 'https://lj.luokaiii.cn/getBlogList',
       data: {
         "limit": 10,
         "page": page + 1,

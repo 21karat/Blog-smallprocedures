@@ -7,83 +7,54 @@ Page({
     userInfo: {},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     showPopup: false,
-    isAuthor:false
+    isAuthor: false
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  showRecent: function() {
+  showRecent: function () {
     wx.navigateTo({
-      url: ''
+      url: '../friend/friend'
     })
   },
-  showCollected: function() {
+  showCollected: function () {
     wx.navigateTo({
-      url: ''
+      url: '../friend/friend'
     })
   },
-  showAboutMe: function() {
+  showAboutMe: function () {
     wx.navigateTo({
-      url: ''
+      url: '../about/about_me'
     })
   },
-  showAboutWechat: function() {
+  showAboutWechat: function () {
     wx.navigateTo({
-      url: ''
+      url: '../about/about_wechat'
     })
   },
   showFormId: function () {
     wx.navigateTo({
-      url: ''
+      url: '../setting/setting'
     })
   },
 
-  onLoad: function() {
+  onLoad: function () {
     let that = this;
-    app.checkUserInfo(function(userInfo, isLogin) {
-      if (!isLogin) {
-        that.setData({
-          showPopup: true
-        })
-      } else {
-        that.setData({
-          userInfo: userInfo
-        });
-      }
-    });
-
-    wxApi.check_author().then(res => { 
-      console.info(res.result)
-      that.setData({
-        isAuthor: res.result
-      });
-    })
+    
 
   },
-  bindGetUserInfo: function(e) {
-    console.log(e.detail.userInfo)
-    if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo
-      this.setData({
-        showPopup: !this.data.showPopup,
-        userInfo: e.detail.userInfo
-      });
-    } else {
-      wx.switchTab({
-        url: '../index/index'
-      })
-    }
-  },
+  
 
   /**
    * 返回
    */
-  navigateBack: function(e) {
+  navigateBack: function (e) {
     wx.switchTab({
       url: '../index/index'
     })
-  }
+  },
+  
 })

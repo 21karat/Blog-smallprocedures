@@ -1,7 +1,7 @@
 <import src="../../templates/login.wxml" />
 <view class="container more">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="../../images/pic/1.jpg" background-size="cover"></image>
+    <image class="userinfo-avatar" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3297261154,2231661797&fm=26&gp=0.jpg" background-size="cover"></image>
     <text class="userinfo-nickname">用户信息</text>
   </view>
 </view>
@@ -12,7 +12,7 @@
   </view>
   <view class="zan-cell zan-cell--access" bindtap="showCollected">
     <view class="zan-cell__hd"></view>
-    <view class="zan-cell__bd">我的收藏</view>
+    <view class="zan-cell__bd">友链</view>
     <view class="zan-cell__ft"></view>
   </view>
 </view>
@@ -30,12 +30,7 @@
   </view>
   <view class="zan-cell zan-cell--access" bindtap="showAboutWechat">
     <view class="zan-cell__hd"></view>
-    <view class="zan-cell__bd">关于我karat</view>
-    <view class="zan-cell__ft"></view>
-  </view>
-  <view class="zan-cell zan-cell--access" bindtap="showMiniBlog">
-    <view class="zan-cell__hd"></view>
-    <view class="zan-cell__bd">我si程序员</view>
+    <view class="zan-cell__bd">关于Karat</view>
     <view class="zan-cell__ft"></view>
   </view>
   <view wx:if="{{isAuthor}}">

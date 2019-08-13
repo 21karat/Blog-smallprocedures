@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="zan-panel-title">关于这里</view>
+  <view class="zan-panel">
+    <view class='zan-font-14' style="padding: 15px;">
+      <text>我自己弄着玩的，毕竟参与过相关技术的项目，想在此留下点关于这项技术的痕迹。
+      </text>
+    </view>
+  </view>
+
+  <view class="zan-panel-title">21karat由来</view>
+  <view class="zan-panel">
+    <view class='zan-font-14' style="padding: 15px;">
+      <text>无意间看到bug生活2048小程序，自己已做过小程序就想着弄个差不多的，正好这个小程序作者前端代码开源了，就拿过来参照改了改。
+      </text>
+    </view>
+  </view>
+</view>

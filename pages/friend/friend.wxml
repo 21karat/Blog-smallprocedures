@@ -1,0 +1,10 @@
+<view class="container">
+
+  <view class="zan-panel-title">友链</view>
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view>luokai：</view>
+      <view class='zan-text-underline zan-c-blue' data-index='{{email}}' bindtap="luokai">{{luokai}}</view>
+    </view>
+  </view>
+</view>

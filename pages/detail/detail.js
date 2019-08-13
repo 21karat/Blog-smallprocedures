@@ -71,7 +71,7 @@ Page({
       loading: true
     })
     wx.request({
-      url: 'http://localhost:8080/getCommentByBlog',
+      url: 'https://lj.luokaiii.cn/getCommentByBlog',
       data: {
         "blogId": that.data.post.id
       },
@@ -108,7 +108,7 @@ Page({
     var blogId = that.data.post.id
 
     wx.request({
-      url: 'http://localhost:8080/addComment',
+      url: 'https://lj.luokaiii.cn/addComment',
       data: {
         "blogId": blogId,
         "userId": 1,
@@ -160,7 +160,7 @@ Page({
     let that = this;
     console.log("文章信息开始获取");
     wx.request({
-      url: 'http://localhost:8080/getBlogDetail',
+      url: 'https://lj.luokaiii.cn/getBlogDetail',
       data: {
         "blogId": blogId
       },

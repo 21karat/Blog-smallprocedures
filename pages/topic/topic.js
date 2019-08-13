@@ -101,7 +101,7 @@ Page(extend({}, Tab, {
     }
 
     wx.request({
-      url: 'http://localhost:8080/getBlogListByTab',
+      url: 'https://lj.luokaiii.cn/getBlogListByTab',
       data: {
         "limit": 10,
         "page": page + 1,

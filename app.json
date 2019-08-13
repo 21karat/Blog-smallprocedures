@@ -4,6 +4,9 @@
     "pages/detail/detail",
     "pages/topic/topic",
     "pages/mine/mine",
+    "pages/about/about_me",
+    "pages/about/about_wechat",
+    "pages/friend/friend",
     "pages/logs/logs"
   ],
   "window": {
