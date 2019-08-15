@@ -3,7 +3,7 @@
 
 <scroll-view scroll-y="true" class="container" bindscrolltolower="lower" enable-back-to-top="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
   <block wx:for="{{posts}}">
-    <view class="feed-item" id="1" bindtap="bindItemTap">
+    <view class="feed-item" id="{{item.id}}" bindtap="bindItemTap">
       <view class="zan-font-16">
         <text>{{item.title}}</text>
       </view>
@@ -22,7 +22,7 @@
           <view class="icon-created">
             <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
             <view class="zan-pull-left zan-font-12">
-              <text>{{item.fabulous}}</text>
+              <text>{{item.time}}</text>
             </view>
           </view>
           <view class="icon-review">

@@ -47,7 +47,7 @@ Page({
   bindItemTap: function (e) {
     let blogId = e.currentTarget.id;
     wx.navigateTo({
-      url: '../detail/detail?blogId=' + blogId
+      url: '../detail/detail?blogId='+blogId
     })
   },
   /**
@@ -57,7 +57,7 @@ Page({
     var that = this;
     let page = that.data.page;
     wx.request({
-      url: 'https://lj.luokaiii.cn/getBlogList',
+      url: 'http://localhost:8080/getBlogList',
       data: {
         "limit": 10,
         "page": page + 1,

@@ -22,7 +22,7 @@
         <view class="icon-created">
           <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 "></view>
           <view class="zan-pull-left zan-font-12">
-            <text>{{post.fabulous}}</text>
+            <text>{{post.time}}</text>
           </view>
         </view>
         <view class="icon-review">
