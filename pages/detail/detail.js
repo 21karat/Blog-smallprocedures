@@ -5,19 +5,20 @@ const WxParse = require('../../wxParse/wxParse.js');
 
 const app = getApp()
 
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    post: {},
-    author: "",
+    post: {},//博客
+    author: "",//用户信息
     iconContact: "",
     iconColock: "",
     collected: false,
-    liked: false,
+    liked: false,//喜欢状态
     isShow: false,
-    comments: {},
+    comments: [],//评论
     commentsPage: 1,
     commentContent: "",
     isLastCommentPage: false,
@@ -41,9 +42,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this; 
-    //1.默认值初始化
+    //默认值初始化
     let blogId = options.blogId;
-    // 判断是否已经授权
+    //判断是否已经授权
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
@@ -96,14 +97,6 @@ Page({
         }
       }
     });
-    //3.更新浏览量
-    //wxApi.upsertPostsStatistics([blogId, 1, 0, 0]).then(res => { })
-    //4.文章详情初始化
-    //that.getData(blogId);
-    //5.收藏状态初始化
-    //that.getPostsCollected(blogId);
-    //6.初始化喜欢状态
-    //that.getPostsLiked(blogId);
   },
 
 
@@ -130,11 +123,22 @@ Page({
         // 'Content-Type': 'application/json'
       },
       success: function (res) {
-        // success
         console.log(res);
-        that.setData({
-          comments: res.data
-        });
+        if (res.data.length==0){
+          that.setData({
+            comments:[],
+            nomore: true,
+            loading: false,
+            nodata: true
+          });
+        }else{
+          that.setData({
+            comments: res.data,
+            nomore: false,
+            loading: false,
+            nodata: false
+          });
+        }
       },
     })
   },
@@ -215,11 +219,6 @@ Page({
 
 
 
-
-
-
-
-
   /**
    * 返回
    */
@@ -248,4 +247,182 @@ Page({
     })
   },
 
+
+
+  /**
+   * 打赏
+   */
+  reward: function (e) {
+    wx.showModal({
+      //title: '您的关注是对我最大的打赏',
+      content: '您的关注是对我最大的打赏',
+      showCancel: false,
+      confirmText: '确定',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击了“确定”')
+        }
+      }
+    })
+  },
+  /**
+   *  喜欢按钮操作
+   */
+  clickLike: function (e) {
+    let that = this
+    var postsLiked = true;
+    that.setData({
+      liked: postsLiked
+    })
+  },
+  
+
+  /**
+   * 生成图片海报
+   */
+  bulidImage: function (e) {
+    
+    var that = this
+    that.showHideMenu()
+
+    var defaultImageUrl = that.data.post.url;
+    var qrcodeUrl = ""
+
+    if (that.data.showPosterImage === "") {
+
+      wx.showLoading({
+        title: "正在生成海报",
+        mask: true,
+      });
+      that.setData({
+        showPosterPopup: true
+      })
+      that.createPosterWithCanvas(defaultImageUrl, qrcodeUrl, that.data.post.title, that.data.post.author)
+    } else {
+      that.setData({
+        showPosterPopup: true
+      })
+    }
+  },
+
+  /**
+  * 利用画布生成海报
+  */
+  createPosterWithCanvas: function (postImageLocal, qrcodeLoal, title, custom_excerpt) {
+    var that = this;
+
+    var context = wx.createCanvasContext('mycanvas');
+    context.setFillStyle('#ffffff');
+    context.fillRect(0, 0, 600, 970);
+    context.drawImage(postImageLocal, 0, 0, 600, 300); //绘制首图
+    context.drawImage(qrcodeLoal, 210, 650, 180, 180); //绘制二维码
+    context.setFillStyle("#000000");
+    context.setFontSize(20);
+    context.setTextAlign('center');
+    context.fillText("阅读文章,请长按识别二维码", 300, 895);
+    context.setFillStyle("#000000");
+    context.beginPath() //分割线
+    context.moveTo(30, 620)
+    context.lineTo(570, 620)
+    context.stroke();
+    context.setTextAlign('left');
+    context.setFontSize(40);
+
+    if (title.lengh <= 12) {
+      context.fillText(title, 40, 360);
+    } else {
+      context.fillText(title.substring(0, 12), 40, 360);
+      context.fillText(title.substring(12, 26), 40, 410);
+    }
+
+    context.setFontSize(20);
+    if (custom_excerpt.lengh <= 26) {
+      context.fillText(custom_excerpt, 40, 470);
+    } else {
+      context.fillText(custom_excerpt.substring(0, 26), 40, 470);
+      context.fillText(custom_excerpt.substring(26, 50) + '...', 40, 510);
+    }
+
+    context.draw();
+
+    setTimeout(function () {
+      wx.canvasToTempFilePath({
+        canvasId: 'mycanvas',
+        success: function (res) {
+          var tempFilePath = res.tempFilePath;
+          wx.hideLoading();
+          console.log("海报图片路径：" + res.tempFilePath);
+          that.setData({
+            showPosterPopup: true,
+            showPosterImage: res.tempFilePath
+          })
+        },
+        fail: function (res) {
+          console.log(res);
+        }
+      });
+    }, 900);
+  },
+  /**
+   * 取消保存海报图片
+   */
+  cacenlPosterImage: function () {
+    this.setData({
+      showPosterPopup: false
+    })
+  },
+  /**
+   * 保存海报图片
+   */
+  savePosterImage: function () {
+    let that = this
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.showPosterImage,
+      success(result) {
+        console.log(result)
+        wx.showModal({
+          title: '提示',
+          content: '二维码海报已存入手机相册，赶快分享到朋友圈吧',
+          showCancel: false,
+          success: function (res) {
+            that.setData({
+              showPosterPopup: false
+            })
+          }
+        })
+      },
+      fail: function (err) {
+        console.log(err);
+        if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+          console.log("再次发起授权");
+          wx.showModal({
+            title: '用户未授权',
+            content: '如需保存海报图片到相册，需获取授权.是否在授权管理中选中“保存到相册”?',
+            showCancel: true,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.openSetting({
+                  success: function success(res) {
+                    console.log('打开设置', res.authSetting);
+                    wx.openSetting({
+                      success(settingdata) {
+                        console.log(settingdata)
+                        if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                          console.log('获取保存到相册权限成功');
+                        } else {
+                          console.log('获取保存到相册权限失败');
+                        }
+                      }
+                    })
+
+                  }
+                });
+              }
+            }
+          })
+        }
+      }
+    });
+  }
 })

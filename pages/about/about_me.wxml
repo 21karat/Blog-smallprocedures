@@ -3,14 +3,7 @@
   <view class="zan-panel">
     <view class='zan-font-14' style="padding: 15px;">
       <text>
-曲阑干外天如水。 昨夜还曾倚。
-初将明月比佳期。
-长向月圆时候、望人归。
-罗衣著破前香在。 旧意谁教改。
-一春离恨懒调弦。
-犹有两行闲泪、宝筝前。
-栏干曲曲弯弯天色如水湛蓝，昨晚我也曾在这里凭依栏杆。人们都是把明月比作那佳期，认为月满之时人也就会团圆、我会在这里倚栏盼望盼你归来。
-绫罗的衣服虽已坏香气还在，又是谁让游子把初衷来改变。一春以来因离愁别恨懒抚筝，那两行因闲愁而伤心的眼泪，一滴滴落在了那宝筝的前面。
+{{author.title}}
       </text>
     </view>
   </view>
@@ -19,19 +12,19 @@
   <view class="zan-panel">
     <view class="zan-cell">
       <view>邮箱：</view>
-      <view class='zan-text-underline zan-c-blue' data-index='{{email}}' bindtap="copyDataTap">{{email}}</view>
+      <view class='zan-text-underline zan-c-blue' data-index='{{author.mailbox}}' bindtap="copyDataTap">{{author.mailbox}}</view>
     </view>
     <view class="zan-cell">
       <view>微信公众号：</view>
-      <view class='zan-text-underline zan-c-blue ' bindtap="copyDataTap" data-index='{{wechat}} '>{{wechat}}</view>
+      <view class='zan-text-underline zan-c-blue ' bindtap="copyDataTap" data-index='{{author.publicNumber}}'>{{author.publicNumber}}</view>
     </view>
     <view class="zan-cell">
       <view>github：</view>
-      <view class='zan-text-underline zan-c-blue ' bindtap="copyDataTap" data-index='{{github}} '>{{github}}</view>
+      <view class='zan-text-underline zan-c-blue ' bindtap="copyDataTap" data-index='{{author.gitHub}}'>{{author.gitHub}}</view>
     </view>
     <view class="zan-cell">
       <view>博客园：</view>
-      <view class='zan-text-underline zan-c-blue ' bindtap="copyDataTap" data-index='{{cnblogs}} '>{{cnblogs}}</view>
+      <view class='zan-text-underline zan-c-blue ' bindtap="copyDataTap" data-index='{{author.blogGarden}}'>{{author.blogGarden}}</view>
     </view>
   </view>
 </view>

@@ -80,12 +80,6 @@ Page({
           page: res.data.page,
           loading: false
         });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
       }
     })
   }

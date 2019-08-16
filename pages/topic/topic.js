@@ -48,6 +48,8 @@ Page(extend({}, Tab, {
     this.getData(0);
   },
   onLoad: function () {
+    //获取数据
+    console.log('onLoad')
     this.getData(0);
   },
   lower: function () {
@@ -74,11 +76,11 @@ Page(extend({}, Tab, {
       url: '../detail/detail?blogId=' + blogId
     })
   },
-  
+  //获取对应标签的博客
   getData: function (index) {
     let that = this;
-    let page = that.data.page;
-    let selectId = that.data.navTab.selectedId;
+    let page = that.data.page;//页数
+    let selectId = that.data.navTab.selectedId;//标签名称
     let filter = '';
     switch (selectId) {
       case 'hot':
@@ -110,24 +112,26 @@ Page(extend({}, Tab, {
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
-        // 'Content-Type': 'application/json'
       },
       success: function (res) {
-        // success
-        console.log(res);
-        that.setData({
-          posts: res.data.blogs,
-          page: res.data.page,
-          loading: false,
-          nomore: false,
-          nodata: true
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
+        console.log(res.data.blogs.length);
+        if (res.data.blogs.length==0){
+          that.setData({
+            posts: [],
+            page: 0,
+            loading: false,
+            nomore: true,
+            nodata: true
+          });
+        }else{
+          that.setData({
+            posts: res.data.blogs,
+            page: res.data.page,
+            loading: false,
+            nomore: true,
+            nodata: false
+          });
+        }   
       }
     })
   

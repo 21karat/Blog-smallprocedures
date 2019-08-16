@@ -2,15 +2,15 @@
   <view class="zan-panel-title">关于这里</view>
   <view class="zan-panel">
     <view class='zan-font-14' style="padding: 15px;">
-      <text>我自己弄着玩的，毕竟参与过相关技术的项目，想在此留下点关于这项技术的痕迹。
+      <text>无意间看到bug生活2048小程序，自己也做过小程序就想着弄个差不多的，正好这个小程序作者前端代码开源了，就拿过来参照改了改。
       </text>
     </view>
   </view>
 
-  <view class="zan-panel-title">21karat由来</view>
+  <view class="zan-panel-title">21karat</view>
   <view class="zan-panel">
     <view class='zan-font-14' style="padding: 15px;">
-      <text>无意间看到bug生活2048小程序，自己已做过小程序就想着弄个差不多的，正好这个小程序作者前端代码开源了，就拿过来参照改了改。
+      <text>没有的就想拥有，可能拥有过后就没有了最初的激情，就像这门技术一样，这个博客也算是对这门技术的一个总结吧，总归来过，留点东西去回忆感觉还是不错的。
       </text>
     </view>
   </view>

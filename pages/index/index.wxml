@@ -1,6 +1,7 @@
 <!--index.wxml-->
+<import src="/dist/tab/index.wxml" />
 <import src="/dist/loadmore/index.wxml" />
-
+<official-account></official-account>
 <scroll-view scroll-y="true" class="container" bindscrolltolower="lower" enable-back-to-top="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
   <block wx:for="{{posts}}">
     <view class="feed-item" id="{{item.id}}" bindtap="bindItemTap">
@@ -8,7 +9,7 @@
         <text>{{item.title}}</text>
       </view>
       <view style='margin-top:10px;text-align: center'>
-        <image mode="widthFix" style="width: 100%;" data-index="{{idx}}" binderror="errorloadImage" src="{{item.url}}"></image>
+        <image mode="widthFix" style="width: 100%;" src="{{item.url}}"></image>
       </view>
       <view class="zan-font-12 zan-ellipsis--l3">
         <text>{{item.content}}</text>

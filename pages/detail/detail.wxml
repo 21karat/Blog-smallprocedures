@@ -1,4 +1,9 @@
 <import src="../../wxParse/wxParse.wxml" />
+<import src="/dist/tab/index.wxml" />
+<import src="/dist/dialog/index.wxml" />
+<import src="/dist/toast/index.wxml" />
+<import src="/dist/loadmore/index.wxml" />
+
 
 <template is="zan-dialog" data="{{ zanDialog }}"></template>
 <template is="zan-toast" data="{{ zanToast }}"></template>
@@ -69,7 +74,7 @@
       </view>
     </block>
     <template is="zan-loadmore" data="{{ loading }}" />
-    <template is="zan-loadmore" data="{{ nodata,nodata_str }}" />
+    <template is="zan-loadmore" data="{{ nodata }}" />
     <template is="zan-loadmore" data="{{ nomore }}" />
   </view>
 </view>
@@ -77,7 +82,6 @@
 
 <!--评论区-->
 <view>
-
   <view class="comment-fixed">
     <form catchsubmit="formSubmit" report-submit="true">
       <view class="comment-respond">
@@ -112,14 +116,6 @@
                   <text>海报</text>
                 </view>
               </view>
-              <view class='icon-type' catchtap="collection">
-                <view>
-                  <image src="../../images/icon/{{collected?'collected.png':'collect.png'}}" class="img-menu" ></image>
-                </view>
-                <view>
-                  <text>收藏</text>
-                </view>
-              </view>
               <view class='icon-type' catchtap="clickLike">
                 <view>
                   <image src="../../images/icon/{{liked?'liked.png':'like.png'}}"   class="img-menu"></image>
@@ -128,7 +124,7 @@
                   <text>喜欢</text>
                 </view>
               </view>
-              <view class='icon-type' catchtap="reward" >
+              <view class='icon-type' catchtap="reward">
                 <view>
                   <image src="../../images/icon/reward.png" class="img-menu"></image>
                 </view>

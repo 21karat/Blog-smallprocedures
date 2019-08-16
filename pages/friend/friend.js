@@ -1,35 +1,32 @@
 
+//获取应用实例
+const app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    luokai:'https://koral.cf/'
+    friend: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+    this.getData();
   },
-  formSubmit: function (e) {
-    let that = this;
-    if (e.detail != undefined && e.detail.formId != undefined) {
-      console.log(e.detail.formId)
-    }
-  },
-  copyDataTap:function(e){
-    var data = e.target.dataset.index
-    wx.setClipboardData({
-      data: data,
+  getData: function () {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/getFrends',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
       success: function (res) {
-        wx.getClipboardData({
-          success: function (res) {
-            console.log(res.data) 
-          }
-        })
+        console.log(res.data);
+        that.setData({
+          friend: res.data,
+        });
       }
     })
   }

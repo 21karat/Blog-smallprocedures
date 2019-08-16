@@ -10,7 +10,7 @@
     <block wx:for="{{posts}}" wx:for-index="idx" data-data="{{item}}">
       <view class="zan-panel zan-panel--without-top-border" >
         <view class="zan-card">
-          <view class="zan-card__thumb">
+          <view class="zan-card__thumb" id="{{item.id}}" bindtap="bindItemTap">
             <image class="zan-card__img" src="{{item.url}}" data-index="{{idx}}" binderror="errorloadImage" mode="aspectFit"></image>
           </view>
           <view class="zan-card__detail" id="{{item.id}}" bindtap="bindItemTap">
@@ -26,7 +26,7 @@
                 <view class="zan-ellipsis--l2 zan-pull-left zan-font-12 .zan-margin-tag">{{item.author}}</view>
                 <view class="zan-icon zan-icon-clock zan-pull-left zan-font-12 .zan-margin"></view>
                 <view class="zan-ellipsis--l2 zan-pull-left zan-font-12">
-                  <text>{{item.love}}</text>
+                  <text>{{item.time}}</text>
                 </view>
               </view>
             </view>

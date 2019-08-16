@@ -1,10 +1,11 @@
 <view class="container">
-
   <view class="zan-panel-title">友链</view>
+  <block wx:for="{{friend}}">
   <view class="zan-panel">
     <view class="zan-cell">
-      <view>luokai：</view>
-      <view class='zan-text-underline zan-c-blue' data-index='{{email}}' bindtap="luokai">{{luokai}}</view>
+      <text space="ensp">{{item.name}}  </text>
+      <view class='zan-text-underline zan-c-blue' bindtap="{{item.adrr}}">{{item.adrr}}</view>
     </view>
   </view>
+  </block>
 </view>
