@@ -57,24 +57,30 @@ Page({
                   // 可以传给后台，再经过解析获取用户的 openid
                   // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
                   wx.request({
-                  // 自行补上自己的 APPID 和 SECRET
-                    url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxd7c8e803703c3868&secret=bf286bf21e998d272f5319db1a2dd9b0&js_code=' + res.code + '&grant_type=authorization_code',
-                    success: res => {
-                        // 获取到用户的 openid
-                        console.log("用户的openid:" + res.data.openid);
-                        wx.request({
-                          url: app.Host +'getUserByOpenId?openId=' + res.data.openid,
-                          success: res => {
-                            console.log("请求状态:" + res.data.state);
-                            console.log("请求状态:" + res.data.user.url);
-                            if (res.data.state){
-                              that.setData({
-                                url: res.data.user.url,
-                                name: res.data.user.name,
-                              });
-                            }
+                    url: app.Host + 'getOpenId',
+                    data: {
+                      "code": res.code
+                    },
+                    method: 'POST',
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded',
+                    },
+                    success: function (res) {
+                      // 获取到用户的 openid
+                      console.log("用户的openid:" + res.data.openid);
+                      wx.request({
+                        url: app.Host + 'getUserByOpenId?openId=' + res.data.openid,
+                        success: res => {
+                          console.log("请求状态:" + res.data.state);
+                          console.log("请求状态:" + res.data.user.url);
+                          if (res.data.state) {
+                            that.setData({
+                              url: res.data.user.url,
+                              name: res.data.user.name,
+                            });
                           }
-                        });
+                        }
+                      });
                     }
                   });
                 }

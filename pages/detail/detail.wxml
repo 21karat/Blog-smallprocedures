@@ -146,5 +146,3 @@
 <view class="canvas-box">
   <canvas style="width: 600px;height: 970px;" canvas-id="mycanvas" />
 </view>
-
-<template is="poster" data="{{showPosterPopup: showPosterPopup,showPosterImage:showPosterImage}}"></template>
