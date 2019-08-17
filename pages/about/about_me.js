@@ -15,7 +15,7 @@ Page({
   onLoad: function (options) {
     let that = this; 
     wx.request({
-      url: 'http://localhost:8080/selectAuthor',
+      url: app.Host +'selectAuthor',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',

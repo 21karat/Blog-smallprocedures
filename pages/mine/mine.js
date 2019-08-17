@@ -63,7 +63,7 @@ Page({
                         // 获取到用户的 openid
                         console.log("用户的openid:" + res.data.openid);
                         wx.request({
-                          url: 'http://localhost:8080/getUserByOpenId?openId=' + res.data.openid,
+                          url: app.Host +'getUserByOpenId?openId=' + res.data.openid,
                           success: res => {
                             console.log("请求状态:" + res.data.state);
                             console.log("请求状态:" + res.data.user.url);

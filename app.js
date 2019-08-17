@@ -1,8 +1,6 @@
 //app.js
 App({
   //设置全局请求URL
-  globalData: {
-    URL: 'https://www.oyhdo.com',
-    BDURL:'http://localhost:8080/'
-  },
+   Host: 'https://lj.luokaiii.cn/', //正式环境
+  //Host: 'http://localhost:8080/', //测试环境
 })

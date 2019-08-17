@@ -1,3 +1,6 @@
+//获取应用实例
+const app = getApp()
+
 Page({
   data: {
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
@@ -19,7 +22,7 @@ Page({
           var code = res.code;
           //调用后端，获取微信的session_key,secret
           wx.request({
-            url: 'http://localhost:8080/addUser',
+            url: app.Host +'addUser',
             data: {
               'code': res.code,
               'nickName': e.detail.userInfo.nickName,

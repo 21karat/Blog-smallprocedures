@@ -70,7 +70,7 @@ Page({
                       // 获取到用户的 openid
                       console.log("用户的openid:" + res.data.openid);
                       wx.request({
-                        url: 'http://localhost:8080/getUserByOpenId?openId=' + res.data.openid,
+                        url: app.Host +'getUserByOpenId?openId=' + res.data.openid,
                         success: res => {
                           console.log("openId:" + res.data.user.openId);
                           if (res.data.state) {
@@ -113,7 +113,7 @@ Page({
       loading: true
     })
     wx.request({
-      url: 'http://localhost:8080/getCommentByBlog',
+      url: app.Host +'getCommentByBlog',
       data: {
         "blogId": that.data.post.id
       },
@@ -155,7 +155,7 @@ Page({
     var blogId = that.data.post.id
     var openId = that.data.author
     wx.request({
-      url: 'http://localhost:8080/addComment',
+      url: app.Host +'addComment',
       data: {
         "blogId": blogId,
         "openId": openId,
@@ -195,7 +195,7 @@ Page({
     let that = this;
     console.log("文章信息开始获取");
     wx.request({
-      url: 'http://localhost:8080/getBlogDetail',
+      url: app.Host +'getBlogDetail',
       data: {
         "blogId": blogId
       },

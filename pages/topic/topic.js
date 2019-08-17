@@ -1,5 +1,7 @@
 
 const { Tab, extend } = require('../../dist/index');
+//获取应用实例
+const app = getApp()
 
 Page(extend({}, Tab, {
   data: {
@@ -103,7 +105,7 @@ Page(extend({}, Tab, {
     }
 
     wx.request({
-      url: 'http://localhost:8080/getBlogListByTab',
+      url: app.Host +'getBlogListByTab',
       data: {
         "limit": 10,
         "page": page + 1,
