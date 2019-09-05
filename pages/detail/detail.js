@@ -77,6 +77,7 @@ Page({
                       console.log("用户的openid:" + res.data.openid);
                       wx.request({
                         url: app.Host + 'getUserByOpenId?openId=' + res.data.openid,
+                        method: 'POST',
                         success: res => {
                           console.log("openId:" + res.data.user.openId);
                           if (res.data.state) {
